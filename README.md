@@ -5,7 +5,7 @@ Build automático com [GruntJS](http://gruntjs.com/)
 
 ## Como começar
 
-1 Clone o projeto gite rode o [NPM](https://npmjs.org/)
+1 Clone o projeto git e utilize o [NPM](https://npmjs.org/)
 
 ```bash
 $ git clone https://github.com/roneichiarandi/grunt-base.git
@@ -14,7 +14,7 @@ $ npm install
 ```
 2 Edite os caminhos de `Build` no arquivo `Gruntfile.js`.
 
-3 Trabalhe com os arquivos da pasta `dev`, rode o comando `$ grunt w` para verificar alguma alteração fazer a build.
+3 Trabalhe com os arquivos da pasta `dev`, utilize o comando `$ grunt w` para verificar alguma alteração fazer a build.
 
 ### Plugins utilizados:
 
@@ -22,6 +22,7 @@ $ npm install
  * [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean)
  * [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less)
  * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
+ * [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
  * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
  * [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
 
@@ -52,5 +53,6 @@ $ npm install
  * [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean)
  * [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less)
  * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
+ * [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
  * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
  * [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
