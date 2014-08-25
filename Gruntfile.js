@@ -131,6 +131,6 @@ grunt.registerTask( 'build-min', [ 'clean', 'less:min', 'uglify:min', 'imagemin'
 grunt.registerTask( 'images', [ 'clean:image', 'imagemin'] );
 
 // Watch
-grunt.registerTask( 'w', ['clean', 'watch' ] );
+grunt.registerTask( 'w', ['watch'] );
 
 };
