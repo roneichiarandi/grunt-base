@@ -20,6 +20,16 @@ grunt.initConfig({
   // Config path
   config: PathConfig,
 
+  // Create folder of build
+  mkdir: {
+    all: {
+      options: {
+        mode: 0777,
+        create: ['<%= config.build %>']
+      },
+    },
+  },
+
   // Clean files after build
   clean: {
     dist: {
@@ -62,7 +72,7 @@ grunt.initConfig({
         beautify : true
       },
       files : {
-        '<%= config.build %>/js/scripts.js': scripts
+        '<%= config.build %>js/scripts.js': scripts
       }
     },
     min: {
@@ -125,6 +135,7 @@ grunt.initConfig({
   }
 });
 // Build
+grunt.registerTask( 'base', ['mkdir:all'] );
 grunt.registerTask( 'js-test', ['jshint'] );
 grunt.registerTask( 'build', [ 'clean', 'less:dev', 'uglify:dev', 'imagemin' ] );
 grunt.registerTask( 'build-min', [ 'clean', 'less:min', 'uglify:min', 'imagemin' ] );
