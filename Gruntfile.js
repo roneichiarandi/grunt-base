@@ -5,7 +5,7 @@ require('load-grunt-tasks')(grunt);
 
 // Paths
 var PathConfig = {
-  dev: 'dev/assets/',
+  dev: 'dev/',
   build: 'assets/',
 };
 
@@ -25,7 +25,7 @@ grunt.initConfig({
     all: {
       options: {
         mode: 0777,
-        create: ['<%= config.build %>']
+        create: ['<%= config.build %>', '<%= config.dev %>js', '<%= config.dev %>less', '<%= config.dev %>media']
       },
     },
   },
@@ -135,7 +135,7 @@ grunt.initConfig({
   }
 });
 // Build
-grunt.registerTask( 'base', ['mkdir:all'] );
+grunt.registerTask( 'default', ['mkdir:all'] );
 grunt.registerTask( 'js-test', ['jshint'] );
 grunt.registerTask( 'build', [ 'clean', 'less:dev', 'uglify:dev', 'imagemin' ] );
 grunt.registerTask( 'build-min', [ 'clean', 'less:min', 'uglify:min', 'imagemin' ] );
