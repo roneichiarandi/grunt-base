@@ -25,7 +25,7 @@ grunt.initConfig({
     all: {
       options: {
         mode: 0777,
-        create: ['<%= config.build %>', '<%= config.dev %>js', '<%= config.dev %>less', '<%= config.dev %>media']
+        create: ['<%= config.build %>', '<%= config.dev %>js', '<%= config.dev %>styl', '<%= config.dev %>media']
       },
     },
   },
@@ -44,23 +44,54 @@ grunt.initConfig({
   },
 
   // Less
-  less: {
+  // less: {
+  //   dev: {
+  //    options: {
+  //     paths: ["<%= config.dev %>**/less"]
+  //    },
+  //     files: {
+  //       '<%= config.build %>css/style.css': '<%= config.dev %>**/less/style.less'
+  //     }
+  //   },
+  //   min: {
+  //    options: {
+  //      paths: ["<%= config.dev %>**/less"],
+  //      yuicompress: true,
+  //      compress: true
+  //    },
+  //     files: {
+  //       '<%= config.build %>css/style.min.css': '<%= config.dev %>**/less/style.less'
+  //     }
+  //   }
+  // },
+
+  // Stylus
+  stylus: {
     dev: {
-     options: {
-      paths: ["<%= config.dev %>**/less"]
-     },
+      options: {
+        banner: '/* Author: Ronei Chiarandi, http://roneichiarandi.com.br, <%= grunt.template.today("yyyy") %> */\n', //coment first line css
+        paths: ['<%= config.dev %>styl'],
+        compress: false,
+        urlfunc: 'embedurl' // use embedurl('test.png') in our code to trigger Data URI embedding 
+      },
       files: {
-        '<%= config.build %>css/style.css': '<%= config.dev %>**/less/style.less'
+        '<%= config.build %>style.css': ['<%= config.dev %>**/styl/style.styl'] // compile and concat into single file 
       }
     },
     min: {
-     options: {
-       paths: ["<%= config.dev %>**/less"],
-       yuicompress: true,
-       compress: true
-     },
-      files: {
-        '<%= config.build %>css/style.min.css': '<%= config.dev %>**/less/style.less'
+      compile: {
+        options: {
+          banner: '/* Author: Ronei Chiarandi, http://roneichiarandi.com.br, <%= grunt.template.today("yyyy") %> */\n', //coment first line css
+          compress: true,
+          paths: ['<%= config.dev %>**/styl'],
+          urlfunc: 'embedurl' // use embedurl('test.png') in our code to trigger Data URI embedding 
+        },
+        files: {
+          // '<%= config.build %>style.css': ['<%= config.dev %>**/styl/style.styl'] // compile and concat into single file 
+          src: [ '<%= config.dev %>**/styl/style.styl' ],
+          dest: '<%= config.build %>style.css',
+          ext: '.css'
+        }
       }
     }
   },
@@ -113,11 +144,17 @@ grunt.initConfig({
     options: {
       debounceDelay: 500,
     },
-    less: {
+    // less: {
+    //   files : [
+    //   '<%= config.dev %>**/*.less'
+    //   ],
+    //   tasks : ['less:dev']
+    // },
+    stylus: {
       files : [
-      '<%= config.dev %>**/*.less'
+      '<%= config.dev %>**/*.styl'
       ],
-      tasks : ['less:dev']
+      tasks : ['stylus:dev']
     },
     js: {
       files : [
@@ -137,8 +174,8 @@ grunt.initConfig({
 // Build
 grunt.registerTask( 'default', ['mkdir:all'] );
 grunt.registerTask( 'js-test', ['jshint'] );
-grunt.registerTask( 'build', [ 'clean', 'less:dev', 'uglify:dev', 'imagemin' ] );
-grunt.registerTask( 'build-min', [ 'clean', 'less:min', 'uglify:min', 'imagemin' ] );
+grunt.registerTask( 'build', [ 'clean', 'stylus:dev', 'uglify:dev', 'imagemin' ] );
+grunt.registerTask( 'build-min', [ 'clean', 'stylus:min', 'uglify:min', 'imagemin' ] );
 grunt.registerTask( 'images', [ 'clean:image', 'imagemin'] );
 
 // Watch
